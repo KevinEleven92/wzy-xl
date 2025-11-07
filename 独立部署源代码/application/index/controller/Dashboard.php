@@ -25,7 +25,7 @@ class Dashboard extends Common{
 		$this->assign('bindValues', $bindValues);
 		return $this->fetch();
 	}
-	public function trend($beginDate=null, $endDate=null){
+	public function trend(?string $beginDate=null, ?string $endDate=null){
 		if(request()->isGet()){
 			$endDate = date('Y-m-d');
 			$beginDate = date('Y-m-d', strtotime($endDate . ' -1 month'));

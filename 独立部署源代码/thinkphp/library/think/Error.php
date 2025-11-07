@@ -29,9 +29,10 @@ class Error
     {
         //设置不影响set_error_handler捕获的错误等级
         if (\think\Env::get('production')) {
-            error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+            //支持php8, 增加~E_DEPRECATED
+            error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED);
         }else{
-            error_reporting(E_ALL);
+            error_reporting(E_ALL & ~E_DEPRECATED);
         }
         set_error_handler([__CLASS__, 'appError']);
         set_exception_handler([__CLASS__, 'appException']);
@@ -78,6 +79,10 @@ class Error
      */
     public static function appError($errno, $errstr, $errfile = '', $errline = 0)
     {
+        if($errno == E_DEPRECATED){
+            //avoid Implicitly marking parameter as nullable is deprecated, the explicit nullable type must be used instead
+            return;
+        }
         $exception = new ErrorException($errno, $errstr, $errfile, $errline);
         // 符合异常处理的则将错误信息托管至 think\exception\ErrorException
         if (error_reporting() & $errno) {
