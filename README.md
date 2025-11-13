@@ -9,6 +9,8 @@
 
  **系统介绍和功能展示视频 [点击查看](https://space.bilibili.com/1704374357/channel/seriesdetail?sid=3652047)** 
  
+ **电脑版心理测量系统 [点击下载](https://pan.baidu.com/s/1W_8yEF9nPnUFHqhi1bRI2w?pwd=pwpp)** 
+ 
 ### 系统简介
 
 为政府，企事业单位，学校，心理咨询从业者开展心理健康服务，提供信息化、智能化软件解决方案。
