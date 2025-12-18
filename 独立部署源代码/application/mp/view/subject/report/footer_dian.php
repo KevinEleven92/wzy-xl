@@ -1,7 +1,7 @@
 </ion-content>
 <ion-footer>
 <ion-toolbar class="text-center">
-    <ion-label>©2023 <?=$_studio['store_name']?></ion-label>
+    <ion-label>©2025 <?=$_studio['store_name']?></ion-label>
 </ion-toolbar>
 </ion-footer>
 </ion-app>

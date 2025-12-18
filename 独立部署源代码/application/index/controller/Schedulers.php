@@ -46,7 +46,7 @@ class Schedulers extends Common
                     'job'=>'',
                     'interval'=>'',
                     'date_time_start'=>date('Y-m-d H:i'),
-                    'date_time_end'=>''
+                    'date_time_end'=>null
                 ];
             }
             return $this->fetch('',[

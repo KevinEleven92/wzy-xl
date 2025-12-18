@@ -8,12 +8,15 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
-
-return [
+$localConf = [];
+if(file_exists(ROOT_PATH . "local" . DS . "database.php")){
+    $localConf = include_once ROOT_PATH . 'local' . DS . 'database.php';
+}
+return array_merge([
     // 数据库类型
     'type'            => 'mysql',
-    // 服务器地址
-    'hostname'        => '127.0.0.1',
+    //服务器地址
+    'hostname'        => '',
     // 数据库名
     'database'        => '',
     // 用户名
@@ -21,7 +24,7 @@ return [
     // 密码
     'password'        => '',
     // 端口
-    'hostport'        => '3306',
+    'hostport'        => '',
     // 连接dsn
     'dsn'             => '',
     // 数据库连接参数
@@ -55,4 +58,4 @@ return [
     'datetime_format' => 'Y-m-d H:i:s',
     // 是否需要进行SQL性能分析
     'sql_explain'     => false,
-];
+], $localConf);

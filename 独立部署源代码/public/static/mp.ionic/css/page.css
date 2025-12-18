@@ -385,7 +385,9 @@
 
 .test_box .test_box_content {
 	width: 100%;
+	/*
 	height: calc(100% - 4.5rem);
+	*/
 	padding: 0.5rem;
 	border-radius: 0 0 0.2rem 0.2rem;
 }
@@ -467,7 +469,8 @@
 	display: inline-block;
 }
 
-.test_box .test_box_content .input_box input[type='checkbox'] {
+.test_box .test_box_content .input_box input[type='checkbox'],
+.test_box .test_box_content .input_box input[type='radio'] {
 	width: 0;
 	height: 0;
 	opacity: 0;

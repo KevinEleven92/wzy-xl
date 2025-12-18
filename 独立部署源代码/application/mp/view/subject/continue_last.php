@@ -36,7 +36,7 @@ include APP_PATH . "mp/view/common/script.php";
 ?>
 <script type="text/javascript">
 <?php
-if (\think\Env::get('production')) {
+if (systemSetting('general_site_environment') == 'WEIXIN') {
 ?>
 wx.ready(function(){
   wx.hideAllNonBaseMenuItem();

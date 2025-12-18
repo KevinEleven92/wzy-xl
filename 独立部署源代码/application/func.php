@@ -256,26 +256,20 @@ function password($password, $encrypt='') {
  * @return string
  */
 function dateFilter($input){
-    if($input == Defs::DEFAULT_DB_DATE_VALUE){
-        return '';
-    }
     return $input;
 }
 function dateTimeFilter($input){
-    if($input == Defs::DEFAULT_DB_DATETIME_VALUE){
-        return '';
-    }
     return $input;
 }
 function dateDbConverter($input){
     if(empty($input)){
-        return Defs::DEFAULT_DB_DATE_VALUE;
+        return null;
     }
     return $input;
 }
 function dateTimeDbConverter($input){
     if(empty($input)){
-        return Defs::DEFAULT_DB_DATETIME_VALUE;
+        return null;
     }
     return $input;
 }
@@ -361,17 +355,8 @@ function checkMpAutoLoginSign($uid, $timestamp, $sign){
 function wxPaySetting(){
     //微信支付商户号
     $mchId = systemSetting('WX_PAYMENT_MCH_ID');
-    if(empty($mchId)){
-        //未配置独立微信支付
-        Log::notice('wxPaySetting: 未配置微信支付');
-        return;
-    }
     //APIv2密钥
     $key = systemSetting('WX_PAYMENT_KEY');
-    /*
-    Config::set('wx.payment.mch_id', $mchId);
-    Config::set('wx.payment.key', $key);
-    */
     //API证书, 独立存放
     $certPath = ROOT_PATH.'conf'.DS.'wxpay'.DS."{$mchId}_cert.pem";
     $keyPath = ROOT_PATH.'conf'.DS.'wxpay'.DS."{$mchId}_key.pem";
@@ -416,4 +401,7 @@ function generateThumbnailUrl($uploadUrl, $size=100, $emptyUrl=''){
         return $uploadUrl;
     }
     return url('index/Attachments/thumbnailUploadImage', ['absoluteUrl'=>$uploadUrl, 'size'=>$size]);
+}
+function checkInstalled(){
+    return file_exists(ROOT_PATH . "local" . DS . "database.php");
 }

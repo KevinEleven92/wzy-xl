@@ -28,6 +28,12 @@ return array(
         'editor'  => array('type'=>'textbox','options'=>array('tipPosition'=>'left', 'validType'=>array('nothtml','length[0,255]'))),
         'default' => '***心理咨询系统',
     ),
+    'general_site_environment'=>[
+        'name'    => '系统环境',
+        'group'   => '通用',
+        'editor'  => ['type'=>'combobox','options'=>['data'=>[['text'=>'WEIXIN','value'=>'WEIXIN'], ['text'=>'DEV','value'=>'DEV']], 'editable'=>false]],
+        'default' => 'DEV',
+    ],
     /*
     'general_admin_address' => array(
         'name'    => '管理员邮箱(多个用英文,分割)',
@@ -58,7 +64,7 @@ return array(
         'name'    => '系统版权',
         'group'   => '通用',
         'editor'  => array('type'=>'textbox','options'=>array('tipPosition'=>'left', 'validType'=>array('nothtml','length[0,255]'))),
-        'default' => 'powered by ***',
+        'default' => 'Powered by 《为之易心理健康系统》',
     ),
     'general_site_beian' => array(
         'name'    => '备案号',

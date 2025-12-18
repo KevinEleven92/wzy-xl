@@ -1,19 +1,3 @@
-/*
- Navicat Premium Dump SQL
-
- Source Server         : wzyer
- Source Server Type    : MySQL
- Source Server Version : 80032 (8.0.32)
- Source Host           : www.wzyer.com:3306
- Source Schema         : wzyer_standalone
-
- Target Server Type    : MySQL
- Target Server Version : 80032 (8.0.32)
- File Encoding         : 65001
-
- Date: 01/10/2025 12:00:00
-*/
-
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -99,7 +83,7 @@ CREATE TABLE `admins`  (
   `disabled` tinyint NOT NULL DEFAULT 1 COMMENT '1-enabled, 2-disabled',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `password_changed` date NOT NULL DEFAULT '0000-00-00' COMMENT ' 密码修改日期',
+  `password_changed` date NULL DEFAULT NULL COMMENT ' 密码修改日期',
   `super_user` tinyint NOT NULL DEFAULT 2 COMMENT '1-super user, 2-common user',
   `role_id` int UNSIGNED NOT NULL DEFAULT 0 COMMENT '角色id',
   `last_login_time` datetime NULL DEFAULT NULL COMMENT '最后一次登录时间',
@@ -110,7 +94,7 @@ CREATE TABLE `admins`  (
 -- ----------------------------
 -- Records of admins
 -- ----------------------------
-INSERT INTO `admins` VALUES (30, 'admin', 'f97d6de3ceed1d432092d3c98d517f97', 'ZlgwIP', '超级管理员', 'admin@sohu.com', 1, '2024-09-26 10:21:15', '2025-10-01 11:55:22', '0000-00-00', 1, 0, '2025-10-01 11:55:22');
+INSERT INTO `admins` VALUES (30, 'admin', 'f97d6de3ceed1d432092d3c98d517f97', 'ZlgwIP', '超级管理员', 'admin@sohu.com', 1, '2024-09-26 10:21:15', '2025-12-11 12:15:35', '2025-12-01', 1, 0, '2025-12-11 11:07:11');
 INSERT INTO `admins` VALUES (32, 'test', '15ca3ac03accc8b03532a6655beff102', 'xHPtzE', '测试', '', 1, '2024-10-09 17:29:10', '2025-10-01 11:57:02', '2024-10-09', 1, 0, '2025-10-01 11:57:02');
 
 -- ----------------------------
@@ -133,12 +117,7 @@ CREATE TABLE `aio`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `uid`(`uid` ASC) USING BTREE,
   INDEX `access_token`(`access_token` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '一体机' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of aio
--- ----------------------------
-
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '一体机' ROW_FORMAT = DYNAMIC;
 -- ----------------------------
 -- Table structure for aio_order
 -- ----------------------------
@@ -154,7 +133,7 @@ CREATE TABLE `aio_order`  (
   `test_items` int NULL DEFAULT 0 COMMENT '已经测试的题目数量',
   `total_items` int NULL DEFAULT 0 COMMENT '测试题目的总数',
   `curr_item` int NOT NULL DEFAULT 0 COMMENT '当前题目Id',
-  `items` varchar(4096) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '评估项:itemt1,item2,item3...',
+  `items` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT '评估项:itemt1,item2,item3...',
   `result` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT '测评结果',
   `finished` int NULL DEFAULT 0 COMMENT '题目是否完成',
   `warning_level` tinyint NOT NULL DEFAULT 0 COMMENT '预警级别，0-未定义，1-绿，2-黄，3-红',
@@ -164,12 +143,7 @@ CREATE TABLE `aio_order`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `order_no`(`order_no` ASC) USING BTREE,
   INDEX `aio_id`(`aio_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '一体机测评订单' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of aio_order
--- ----------------------------
-
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '一体机测评订单' ROW_FORMAT = DYNAMIC;
 -- ----------------------------
 -- Table structure for attachments
 -- ----------------------------
@@ -294,7 +268,7 @@ CREATE TABLE `dian_goods`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `token`(`token` ASC) USING BTREE,
   INDEX `subject_id`(`subject_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12975 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '电商店铺测评商品' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 12985 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '电商店铺测评商品' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for dian_order
@@ -310,17 +284,18 @@ CREATE TABLE `dian_order`  (
   `test_items` int NULL DEFAULT 0 COMMENT '已经测试的题目数量',
   `total_items` int NULL DEFAULT 0 COMMENT '测试题目的总数',
   `curr_item` int NOT NULL DEFAULT 0 COMMENT '当前题目Id',
-  `items` varchar(4096) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '评估项:itemt1,item2,item3...',
+  `items` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT '评估项:itemt1,item2,item3...',
   `result` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT '评估结果',
   `finished` int NULL DEFAULT 0 COMMENT '题目是否完成',
   `warning_level` tinyint NOT NULL DEFAULT 0 COMMENT '预警级别，0-未定义，1-绿，2-黄，3-红',
   `item_version` int NOT NULL DEFAULT 0 COMMENT '测评项目版本号',
   `question_form` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT '前置问卷',
   `question_answer` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT '前置问卷答案',
+  `subject_id` int NOT NULL DEFAULT 0 COMMENT '量表id',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `order_no`(`order_no` ASC) USING BTREE,
   INDEX `goods_id`(`goods_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2390 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '电商店铺测评订单' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2391 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '电商店铺测评订单' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for event_logs
@@ -334,7 +309,7 @@ CREATE TABLE `event_logs`  (
   `entry` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`event_log_id`) USING BTREE,
   INDEX `user_id`(`user_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 338 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '系统事件日志' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 339 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '系统事件日志' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for expert
@@ -458,7 +433,7 @@ CREATE TABLE `expert_order`  (
   `customer_id` int UNSIGNED NOT NULL DEFAULT 0 COMMENT '客户账号',
   `expert_id` int UNSIGNED NOT NULL DEFAULT 0 COMMENT '专家编号',
   `order_amount` double(20, 2) NOT NULL DEFAULT 0.00 COMMENT '预约金额',
-  `order_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '订单时间',
+  `order_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '订单时间',
   `appoint_date` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '预约日期',
   `appoint_time` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '预约时间',
   `appoint_duration` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '预约时长',
@@ -529,8 +504,8 @@ CREATE TABLE `job_queue`  (
   `scheduler_id` int NOT NULL DEFAULT 0,
   `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
   `target` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
-  `execute_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `execute_end_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `execute_time` datetime NULL DEFAULT NULL,
+  `execute_end_time` datetime NULL DEFAULT NULL,
   `status` tinyint NOT NULL DEFAULT 0,
   `result` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
   `message` varchar(1024) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
@@ -552,9 +527,9 @@ CREATE TABLE `login_logs`  (
   `useragent` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
   `device` tinyint NOT NULL DEFAULT 1,
   `ip` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
-  `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2313 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '管理员登录日志' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2314 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '管理员登录日志' ROW_FORMAT = DYNAMIC;
 -- ----------------------------
 -- Table structure for menu
 -- ----------------------------
@@ -629,7 +604,7 @@ CREATE TABLE `messages`  (
   `content` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `category` tinyint NOT NULL DEFAULT 0,
   `is_read` tinyint NOT NULL DEFAULT 0,
-  `read_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `read_time` datetime NULL DEFAULT NULL,
   `entered` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`message_id`) USING BTREE,
   INDEX `admin_id`(`admin_id` ASC) USING BTREE
@@ -658,7 +633,7 @@ CREATE TABLE `operation_logs`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `record_id`(`record_id` ASC) USING BTREE,
   FULLTEXT INDEX `title_content`(`title`, `content`)
-) ENGINE = InnoDB AUTO_INCREMENT = 4856 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '系统操作日志' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4860 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '系统操作日志' ROW_FORMAT = DYNAMIC;
 -- ----------------------------
 -- Table structure for organization
 -- ----------------------------
@@ -680,10 +655,10 @@ DROP TABLE IF EXISTS `progress_logs`;
 CREATE TABLE `progress_logs`  (
   `progress_log_id` int NOT NULL AUTO_INCREMENT,
   `category` tinyint NOT NULL DEFAULT 0,
-  `occur_date` date NOT NULL DEFAULT '0000-00-00',
+  `occur_date` date NULL DEFAULT NULL,
   `title` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '标题',
   `entry` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `entered` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `entered` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `external_id` int UNSIGNED NOT NULL DEFAULT 0,
   `show_timeline` tinyint NOT NULL DEFAULT 0 COMMENT '是否展示到时间轴',
@@ -713,9 +688,9 @@ CREATE TABLE `schedulers`  (
   `job` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
   `name` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
   `interval` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
-  `date_time_start` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `date_time_end` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `last_run` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `date_time_start` datetime NULL DEFAULT NULL,
+  `date_time_end` datetime NULL DEFAULT NULL,
+  `last_run` datetime NULL DEFAULT NULL,
   `disabled` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0-enable, 1-disabled',
   `deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0-active, 1-deleted',
   `created_by` int UNSIGNED NOT NULL DEFAULT 0,
@@ -726,10 +701,10 @@ CREATE TABLE `schedulers`  (
 -- ----------------------------
 -- Records of schedulers
 -- ----------------------------
-INSERT INTO `schedulers` VALUES (10, 'backupDB', '数据库备份', '0 2 * * *', '2021-07-30 12:17:00', '0000-00-00 00:00:00', '2025-10-01 02:00:02', 0, 0, 25, '2021-07-30 12:18:48');
-INSERT INTO `schedulers` VALUES (11, 'cleanServer', '清理服务器', '0 3 * * *', '2021-07-30 12:19:00', '0000-00-00 00:00:00', '2025-10-01 03:00:01', 0, 0, 25, '2021-07-30 12:19:25');
-INSERT INTO `schedulers` VALUES (13, 'detectSlowQuery', '数据库慢查询检测', '0 */1 * * *', '2023-05-18 11:10:00', '0000-00-00 00:00:00', '2025-10-01 12:00:02', 0, 0, 25, '2023-05-18 11:11:20');
-INSERT INTO `schedulers` VALUES (15, 'generateReportPdfs', '生成测评报告pdf文件', '*/5 * * * *', '2025-09-11 22:49:00', '0000-00-00 00:00:00', '2025-10-01 11:35:02', 0, 0, 30, '2025-09-11 22:50:13');
+INSERT INTO `schedulers` VALUES (10, 'backupDB', '数据库备份', '0 2 * * *', '2021-07-30 12:17:00', NULL, '2025-10-01 02:00:02', 0, 0, 25, '2021-07-30 12:18:48');
+INSERT INTO `schedulers` VALUES (11, 'cleanServer', '清理服务器', '0 3 * * *', '2021-07-30 12:19:00', NULL, '2025-10-01 03:00:01', 0, 0, 25, '2021-07-30 12:19:25');
+INSERT INTO `schedulers` VALUES (13, 'detectSlowQuery', '数据库慢查询检测', '0 */1 * * *', '2023-05-18 11:10:00', NULL, '2025-10-01 12:00:02', 0, 0, 25, '2023-05-18 11:11:20');
+INSERT INTO `schedulers` VALUES (15, 'generateReportPdfs', '生成测评报告pdf文件', '*/5 * * * *', '2025-09-11 22:49:00', NULL, '2025-10-01 11:35:02', 0, 0, 30, '2025-09-11 22:50:13');
 
 -- ----------------------------
 -- Table structure for setting
@@ -747,7 +722,7 @@ CREATE TABLE `setting`  (
 DROP TABLE IF EXISTS `slow_query`;
 CREATE TABLE `slow_query`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `occur_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `occur_time` datetime NULL DEFAULT NULL,
   `occur_user` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
   `occur_thread` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
   `query_time` decimal(18, 6) NOT NULL DEFAULT 0.000000,
@@ -836,10 +811,14 @@ CREATE TABLE `subject`  (
   `report_demo_images` varchar(512) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '示例报告图片',
   `test_option_col_layout` tinyint NULL DEFAULT 1 COMMENT '答题界面每行的选项数',
   `test_allow_view_report` tinyint NOT NULL DEFAULT 1 COMMENT '是否允许用户查看报告,1:允许，0:不允许',
+  `custom_test` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '定制化测评界面',
+  `custom_answer` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '定制化答题操作',
+  `custom_answer_prev` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '定制化答题前移',
+  `custom_report` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '定制化报告',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `name`(`name` ASC) USING BTREE,
   INDEX `sn`(`sn` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2268 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '评估量表项目' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2270 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '评估量表项目' ROW_FORMAT = DYNAMIC;
 -- ----------------------------
 -- Table structure for subject_category_relate
 -- ----------------------------
@@ -947,7 +926,7 @@ CREATE TABLE `subject_item`  (
   `tag` enum('none','age','sex') CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT 'none' COMMENT '标签',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `subject_id`(`subject_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 102110 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '评测科目题目' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 102117 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '评测科目题目' ROW_FORMAT = DYNAMIC;
 -- ----------------------------
 -- Table structure for subject_item_standard
 -- ----------------------------
@@ -975,7 +954,7 @@ CREATE TABLE `subject_order`  (
   `test_items` int NULL DEFAULT 0 COMMENT '已经测试的题目数量',
   `total_items` int NULL DEFAULT 0 COMMENT '测试题目的总数',
   `curr_item` int NOT NULL DEFAULT 0 COMMENT '当前题目Id',
-  `items` varchar(4096) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '评估项:itemt1,item2,item3...',
+  `items` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT '评估项:itemt1,item2,item3...',
   `result` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT '评估结果',
   `pay_time` timestamp NULL DEFAULT NULL COMMENT '支付时间',
   `notify_time` timestamp NULL DEFAULT NULL COMMENT '支付通知时间',
@@ -997,7 +976,7 @@ CREATE TABLE `subject_order`  (
   INDEX `cb_order_id`(`cb_order_id` ASC) USING BTREE,
   INDEX `survey_order_id`(`survey_order_id` ASC) USING BTREE,
   INDEX `customer_id`(`customer_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 760 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '客户评估订单' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 762 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '客户评估订单' ROW_FORMAT = DYNAMIC;
 -- ----------------------------
 -- Table structure for subject_standard
 -- ----------------------------
@@ -1033,7 +1012,7 @@ CREATE TABLE `subject_standard_latitude`  (
   `warning_level` tinyint NOT NULL DEFAULT 0 COMMENT '预警级别，0-未定义，1-绿，2-黄，3-红',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `subject_standard`(`subject_id` ASC, `standard_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 26492 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '评测科目标准范围' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 26496 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '评测科目标准范围' ROW_FORMAT = DYNAMIC;
 -- ----------------------------
 -- Table structure for subject_standard_mapping
 -- ----------------------------
@@ -1127,7 +1106,7 @@ CREATE TABLE `sys_err_exp`  (
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` tinyint NOT NULL DEFAULT 1 COMMENT '1-pending, 2-fixed',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 217 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '系统运行异常' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '系统运行异常' ROW_FORMAT = DYNAMIC;
 -- ----------------------------
 -- Table structure for uni_app_orders
 -- ----------------------------

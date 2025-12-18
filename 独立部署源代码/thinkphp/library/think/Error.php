@@ -28,12 +28,12 @@ class Error
     public static function register()
     {
         //设置不影响set_error_handler捕获的错误等级
-        if (\think\Env::get('production')) {
+        //if (\think\Env::get('production')) {
             //支持php8, 增加~E_DEPRECATED
             error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED);
-        }else{
-            error_reporting(E_ALL & ~E_DEPRECATED);
-        }
+        //}else{
+        //    error_reporting(E_ALL & ~E_DEPRECATED);
+        //}
         set_error_handler([__CLASS__, 'appError']);
         set_exception_handler([__CLASS__, 'appException']);
         register_shutdown_function([__CLASS__, 'appShutdown']);
@@ -172,12 +172,14 @@ class Error
             E_USER_DEPRECATED => "E_USER_DEPRECATED",
             E_ALL => "E_ALL"
         ];
-        Db::table('sys_err_exp')->insert([
-            'severity'=>$severityDefs[$severity]??'',
-            'message'=>mb_substr($message, 0, 1024),
-            'file'=>mb_substr($file, 0, 256),
-            'line'=>$line,
-            'trace'=>$trace
-        ]);
+        if(checkInstalled()){
+            Db::table('sys_err_exp')->insert([
+                'severity'=>$severityDefs[$severity]??'',
+                'message'=>mb_substr($message, 0, 1024),
+                'file'=>mb_substr($file, 0, 256),
+                'line'=>$line,
+                'trace'=>$trace
+            ]);
+        }
     }
 }

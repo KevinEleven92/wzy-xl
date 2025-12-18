@@ -571,6 +571,8 @@ class UniApp extends Controller{
         return "ok";
     }
     protected function _generateWeixinPay($order_no, $order_amount, $jsapi=true){
+        //更新微信配置
+        wxPaySetting();
         $app = Factory::payment(array_merge(config('wx.payment'), ['app_id'=>config('wx.mini_program')['app_id']]));
         $res = $app->order->unify([
             'body' => '测评费用',
@@ -604,6 +606,8 @@ class UniApp extends Controller{
         return ajaxSuccess('操作成功', $data);
     }
     public function payCallbackWeixin(){
+        //更新微信配置
+        wxPaySetting();
         $config_payment = config('wx.payment');
         $app = Factory::payment($config_payment);
         $response = $app->handlePaidNotify(function ($msg, $fail) {

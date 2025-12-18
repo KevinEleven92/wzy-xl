@@ -132,6 +132,8 @@ www.wzyer.com/mp/wx/weboauth.html?referer_url=%2Fmp%2Fsubject%2Fdetail.html%3Fid
     }
     public function events(){
         if ($this->request->isGet()) {
+            //更新微信配置
+            wxPaySetting();
             //token验证
             $token = config('wx.official_account')['token'];
             $requestParams = input('get.');

@@ -272,13 +272,8 @@ return [
             ],
             'EncodingAESKey' => '',
             'log' => [
-                'default' => think\Env::get('production') ? 'pro' : 'dev',
+                'default' => 'pro',
                 'channels' => [
-                    'dev' => [ // 测试环境
-                        'driver' => 'single',
-                        'path' => LOG_PATH . 'easywechat.log',
-                        'level' => 'debug',
-                    ],
                     'pro' => [ // 生产环境
                         'driver' => 'daily',
                         'path' => LOG_PATH . 'easywechat.log',

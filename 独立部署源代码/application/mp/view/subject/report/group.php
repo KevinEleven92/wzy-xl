@@ -54,7 +54,7 @@ include APP_PATH . "mp/view/common/script.php";
 ?>
 <script>
 <?php
-if (\think\Env::get('production')) {
+if (systemSetting('general_site_environment') == 'WEIXIN') {
 ?>
     wx.ready(function(){
         //分享好友

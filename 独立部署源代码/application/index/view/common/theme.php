@@ -12,3 +12,4 @@
 <link rel="stylesheet" type="text/css" href="/static/bootstrap.rating/theme.min.css?<?=STATIC_VER?>"/>
 <link rel="stylesheet" type="text/css" href="/static/css/index/default.css?<?=STATIC_VER?>"/>
 <link rel="stylesheet" type="text/css" href="/static/js/easyui-extension/extension.css?<?=STATIC_VER?>"/>
+<link rel="stylesheet" type="text/css" href="/static/js/easyui-extension/htimeline.css?<?=STATIC_VER?>"/>

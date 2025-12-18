@@ -31,6 +31,7 @@ include APP_PATH . "index" . DS . "view" . DS . "common" . DS . "theme.php";
 
 <script type="text/javascript" src="/static/js/pdfobject.js?<?=STATIC_VER?>"></script>
 <script type="text/javascript" src="/static/js/easyui-extension/extension.js?<?=STATIC_VER?>"></script>
+<script type="text/javascript" src="/static/js/easyui-extension/htimeline.js?<?=STATIC_VER?>"></script>
 <!--bootstrap.rating-->
 <script type="text/javascript" src="/static/bootstrap.rating/star-rating.min.js?<?=STATIC_VER?>"></script>
 <script type="text/javascript" src="/static/bootstrap.rating/theme.min.js?<?=STATIC_VER?>"></script>

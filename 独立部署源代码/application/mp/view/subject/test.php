@@ -18,13 +18,13 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
 </ion-header>
 <ion-content color="bg">
 <ion-card class="test_box" color="light">
-    <!--
     <ion-card-header class="test_box_title ion-no-padding">
         <?=$subject['name']?>
     </ion-card-header>
-    -->
     <ion-card-content class="test_box_head ion-no-padding">
+        <!--
         <div class="test_box_head_label"><?=$subject['name']?></div>
+        -->
         <div class="test_box_head_progress">
             <div class="test_box_head_progress_label">
                 <ion-text id="item_no" class="current"><?=$order['test_items']+1?></ion-text>

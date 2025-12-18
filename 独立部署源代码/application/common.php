@@ -265,6 +265,26 @@ function getUrlExtName($url){
 function urlExists(string $url){
     return strpos(get_headers($url)[0], "200 OK") !== false;
 }
+function array_any(callable $f, array $xs) {
+  foreach ($xs as $x)
+    if (call_user_func($f, $x) === true)
+      return true;
+  return false; 
+}
+
+function array_all(callable $f, array $xs) {
+  foreach ($xs as $x)
+    if (call_user_func($f, $x) === false)
+      return false;
+  return true; 
+}
+function array_count(callable $f, array $xs) {
+	$count = 0;
+	foreach ($xs as $x){
+		if (call_user_func($f, $x) === true) $count++;
+	}
+	return $count; 
+}
 /**
  * 异或加解密
  *

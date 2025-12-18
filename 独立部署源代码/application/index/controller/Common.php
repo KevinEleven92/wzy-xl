@@ -44,6 +44,12 @@ class Common extends Controller
 		$this->loginTime = Session::get('lastlogintime');
 		$this->loginIp = Session::get('lastloginip');
 		$this->loginMobile = request()->isMobile();
+		if(!request()->isAjax()){
+			if(!checkInstalled()){
+                //系统没有安装
+                $this->redirect('index/Install/index');
+            }
+		}
 		$result = self::checkLogin();
 		//管理员
 		RequestContext::I()->loginUserId = $this->loginUserId;

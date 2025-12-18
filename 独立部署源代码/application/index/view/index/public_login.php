@@ -102,7 +102,7 @@
     include APP_PATH . "index" . DS . "view" . DS . "common" . DS . "foot.php";
     ?>
     <div class="text-center mb-1 copyright">
-        <span class="text-dark"><?=systemSetting('general_power_by_text')?></span><a href="https://beian.miit.gov.cn" target="_blank" class="ml-3 text-dark"><?=systemSetting('general_site_beian')?></a>
+        <span class="text-dark">Powered by 《为之易心理健康系统》</span><a href="https://beian.miit.gov.cn" target="_blank" class="ml-3 text-dark"><?=systemSetting('general_site_beian')?></a>
     </div>
     <script type="text/javascript">
         function changeCode(){

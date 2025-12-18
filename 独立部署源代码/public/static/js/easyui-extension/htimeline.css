@@ -1,0 +1,67 @@
+.htimeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.htimeline-item {
+  position: relative;
+  list-style: none;
+  margin-top: 12px;
+  padding: 0px 0 12px 0;
+  min-width: 100px;
+}
+.htimeline-item-label {
+  position: absolute;
+  top: 0px;
+  font-size:12px;
+  opacity:0.5;
+}
+.htimeline-item-dot {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border: 1px solid #95B8E7;
+  border-radius: 50%;
+  background-color: #ffffff;
+  top: 0px
+}
+.htimeline-label .htimeline-item-dot{
+    top: 20px;
+}
+.htimeline-item-dot-custom {
+  width: auto;
+  height: auto;
+  text-align: center;
+  border: 0;
+  line-height: 13px;
+}
+.htimeline-item-line {
+  position: absolute;
+  width: 100%;
+  top: 6px;
+  left: 0;
+  border-top: 1px solid #95B8E7;
+}
+.htimeline-label .htimeline-item-line{
+    top: 26px;
+}
+.htimeline .htimeline-item:last-child .htimeline-item-line {
+  display: none;
+}
+.htimeline-item-content {
+  padding: 24px 10px 10px 1px;
+  position: relative;
+  font-size: 14px;
+  top: 0px;
+  text-align: left;
+  word-break: break-word !important;
+  word-wrap: break-word !important;
+  max-width: 100px;
+}
+.htimeline-label .htimeline-item-content{
+    padding: 34px 10px 10px 1px;
+}

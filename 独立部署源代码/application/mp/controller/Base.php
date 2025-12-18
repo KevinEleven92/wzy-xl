@@ -114,7 +114,7 @@ class Base extends Controller
         $this->assign('_user', $this->_user);
     }
     protected function checkLogin(){
-        if (Env::get('production')) {
+        if (systemSetting('general_site_environment') == 'WEIXIN') {
             //生产环境
             $this->_user = session('user');
         } else {
@@ -141,6 +141,8 @@ class Base extends Controller
             //以下为微信网页授权获取用户信息
             //{"errcode":41002,"errmsg":"appid missing rid: 66fe9a46-7bf98238-3d6ead24"}
             try{
+                //更新微信配置
+                wxPaySetting();
                 $config = config('wx.official_account');
                 $config['oauth']['callback'] = url('mp/Wx/webOauth', ['referer_url'=>$this->_current_url], true, true);
                 $app = \EasyWeChat\Factory::officialAccount($config);

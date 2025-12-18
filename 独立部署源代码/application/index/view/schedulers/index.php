@@ -46,7 +46,7 @@ var <?=JVAR?> = {
             $(that.datagrid).datagrid('updateRow',{
                 index: i,
                 row: {
-                    range: v.date_time_start.substring(0,16) + ' - ' + (v.date_time_end != DEFAULT_DB_DATETIME_VALUE ? v.date_time_end : '永远'),
+                    range: v.date_time_start.substring(0,16) + ' - ' + (v.date_time_end? v.date_time_end : '永远'),
                     status:'<span class="badge badge-'+statusMap[v.disabled]['cls']+'">'+statusMap[v.disabled]['label']+'</span>',
                     btns:btns.join(' ')
                 }

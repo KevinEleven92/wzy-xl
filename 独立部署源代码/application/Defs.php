@@ -43,8 +43,6 @@ class Defs{
         self::eGoodsUsed=>'<span class="badge badge-success">已使用</span>'
     ];
     /*****************************************************************/
-    const DEFAULT_DB_DATE_VALUE = '0000-00-00';
-    const DEFAULT_DB_DATETIME_VALUE = '0000-00-00 00:00:00';
     const WZYER_WXPAY_MCH_ID = '1598729631';
     /**内部超级访问特权**/
     const INTERNAL_PRIVILEGE_TOKEN = 'D751A17428B0CD6077668A706177B8B1';
@@ -204,7 +202,17 @@ class Defs{
         self::SUBJECT_REPORT_ELEMENT_STORY=>'专家建议'
     ];
 
-
+    const DB_TABLE_DEFS = [
+        'H5'=>[
+            'order'=>'subject_order'
+        ],
+        'DIAN'=>[
+            'order'=>'dian_order'
+        ],
+        'AIO'=>[
+            'order'=>'aio_order'
+        ]
+    ];
     /**量表标签*/
     const SUBJECT_LABELS = [
         'banner' => '轮播',

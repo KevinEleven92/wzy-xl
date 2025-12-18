@@ -78,3 +78,10 @@ GLOBAL.func.isValidUrl = function(urlString){
         '(\\#[-a-z\\d_]*)?$','i'); // validate fragment locator
     return !!urlPattern.test(urlString);
 }
+GLOBAL.func.today = function(){
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;  
+}

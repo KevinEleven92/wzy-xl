@@ -200,9 +200,7 @@ class Aio extends Controller{
         }
     }
     public function test($order_no, $skip_question=0){
-        $order = Db::table('aio_order')->where(['order_no'=>$order_no])
-            ->field(true)
-            ->find();
+        $order = Subjects::I()->getOrderByNo($order_no, 'AIO');
         if(empty($order)){
             $this->error('测评订单不存在：'.$order_no);
         }
@@ -220,6 +218,32 @@ class Aio extends Controller{
                 $this->redirect('mp/Aio/question_form', ['order_no'=>$order_no]);
                 return;
             }
+        }
+        $this->assign([
+            'og_tag_type'=>'website',
+            'og_tag_title'=>$subject['name'] . " - 测评",
+            'og_tag_url'=>request()->url(true),
+            'og_tag_image'=>generateUploadFullUrl($subject['image_url']),
+            'og_tag_description'=>generateShareDesc($subject['subject_desc'], 65)
+        ]);
+        if(!empty($subject['custom_test'])){
+            if(!SubjectLogic::I()->checkReportAlgo($subject)){
+                $this->error('个性化测评资料缺失：'.$order_no);
+            }
+            //定制化测评
+            list($class, $method) = explode(':', $subject['custom_test']);
+            try{
+                $testBody = call_user_func([new $class(), $method], $order_no, 'AIO', [
+                    'test_url'=>url('mp/Aio/test'),
+                    'answer_url'=>url('mp/Aio/answer'),
+                    'answer_prev_url'=>url('mp/Aio/answerCustomPrev'),
+                    'regen_order_url'=>url('mp/Aio/regenOrder')
+                ]);
+            }catch(\Exception $e){
+                $this->error('定制测评生成异常，前联系技术支持(wzycoding@qq.com), msg: ' . $e->getMessage());
+            }
+            $this->assign('testBody', $testBody);
+            return $this->fetch('dian/test_custom');
         }
         $subjectItems = Subjects::I()->getSubjectItems($subjectId);
         if (empty($subjectItems)) {
@@ -274,14 +298,6 @@ class Aio extends Controller{
         $this->assign('test_url', url('mp/Aio/test'));
         $this->assign('answer_url', url('mp/Aio/answer'));
         $this->assign('regen_order_url', url('mp/Aio/regenOrder'));
-
-        $this->assign([
-            'og_tag_type'=>'website',
-            'og_tag_title'=>$subject['name'] . " - 测评",
-            'og_tag_url'=>request()->url(true),
-            'og_tag_image'=>generateUploadFullUrl($subject['image_url']),
-            'og_tag_description'=>generateShareDesc($subject['subject_desc'], 65)
-        ]);
         return $this->fetch('dian/test');
     }
     public function question_form($order_no){
@@ -339,15 +355,20 @@ class Aio extends Controller{
      * @param  mixed $item_option, 多选允许为空的情况下,item_option参数会缺失
      * @return void
      */
-    public function answer($order_no, $item_id, $item_type, $item_option=''){
-        try{
-            $redirectUrl = AioLogic::I()->answer($order_no, $item_id, $item_type, $item_option);
-            if($redirectUrl){
-                return ajaxSuccess('操作成功', $redirectUrl);
+    public function answer($order_no){
+        $postData = input('post.');
+        try {
+            if(isset($postData['custom_data'])){
+                //定制化测评
+                $custom_data = $postData['custom_data'];
+                list($order, $nextData) = Subjects::I()->answerCustomItem($order_no, $custom_data, 'AIO');
             }else{
-                return ajaxSuccess();
+                $item_id = $postData['item_id'];
+                $item_type = $postData['item_type'];
+                $item_option = $postData['item_option']??'';
+                $order = Subjects::I()->answerItem($order_no, $item_id, $item_type, $item_option, 'AIO');
             }
-        }catch(WException $e){
+        } catch (\Exception $e) {
             $exceptionCode = $e->getCode();
             if($exceptionCode == -1){
                 //测评项目版本变更
@@ -355,12 +376,41 @@ class Aio extends Controller{
             }
             return ajaxError($e->getMessage());
         }
+        $redirectUrl = '';
+        if($order['finished']){
+            $redirectUrl = url('mp/Aio/report',['order_no'=>$order_no]);
+        }
+        if(isset($postData['custom_data'])){
+            //定制化测评, $nextData为null, 测评结束
+            return ajaxSuccess('操作成功', ['redirectUrl'=>$redirectUrl, 'nextData'=>$nextData]);
+        }else{
+            //没有完成$redirectUrl为空
+            return ajaxSuccess('操作成功', $redirectUrl);
+        }
+    }
+    public function answerCustomPrev($order_no){
+        $order = Subjects::I()->getOrderByNo($order_no, 'AIO');
+        if(empty($order)){
+            return ajaxError("无法找到该订单：" . $order_no);
+        }
+        $subject = Subjects::I()->getSubjectById($order['subject_id']);
+        if(empty($subject)){
+            return ajaxError('该测评订单关联量表丢失：'. $order_no);
+        }
+        if(!SubjectLogic::I()->checkReportAlgo($subject)){
+            return ajaxError('个性化测评资料缺失：'.$order_no);
+        }
+        list($class, $method) = explode(':', $subject['custom_answer_prev']);
+        try{
+            $nextData = call_user_func([new $class(), $method], $order_no, 'AIO');
+            return ajaxSuccess('操作成功', ['nextData'=>$nextData]);
+        }catch(\Exception $e){
+            return ajaxError($e->getMessage());
+        }
     }
     public function report($order_no){
         //Debug::remark('begin');
-        $order = Db::table('aio_order')->where(['order_no'=>$order_no])
-            ->field(true)
-            ->find();
+        $order = Subjects::I()->getOrderByNo($order_no, 'AIO');
         if(empty($order)){
             return $this->fetch('common/missing', ['msg'=>'无法找到订单']);
         }
@@ -368,15 +418,6 @@ class Aio extends Controller{
             //未测评完，继续
             $this->success('该订单未完成，请继续测评', 
                 url('mp/Aio/test', ['order_no'=>$order['order_no']]));
-        }
-        if ($order && !empty($order['result'])) {
-            $result = json_decode($order['result'], true);
-            if($result && isset($result['reportList'])) {
-                $order['report_list'] = $result['reportList'];
-            }else{
-                Log::error("failed to decode result for subject order: {$order_no}");
-                $order['report_list'] = [];
-            }
         }
         //Debug::remark('getOrderByNo');
         //Log::notice("report debug: getOrderByNo cost: " . Debug::getRangeTime('begin', 'getOrderByNo'));
@@ -407,9 +448,10 @@ class Aio extends Controller{
 
         $this->assign('order', $order);
         $this->assign('subject', $subject);
-        
         $this->assign('uuid', uniqid());
-
+        $storeName = Db::table('studio')->where('key', 'store_name')->value('value');
+        $storeName = $storeName??'';
+        $this->assign('_studio', ['store_name'=>$storeName]);
         $this->assign([
             'og_tag_type'=>'website',
             'og_tag_title'=>$subject['name'] . " - 报告",
@@ -420,6 +462,20 @@ class Aio extends Controller{
         $tpl_id = 'default';
         if($subject['report_template']){
             $tpl_id = $subject['report_template'];
+        }
+        if(!empty($subject['custom_report'])){
+            if(!SubjectLogic::I()->checkReportAlgo($subject)){
+                return $this->fetch('common/error', ['msg'=>'个性化测评资料缺失：'.$order_no]);
+            }
+            //定制报告
+            list($class, $method) = explode(':', $subject['custom_report']);
+            try{
+                $reportBody = call_user_func([new $class(), $method], $order_no, 'AIO');
+            }catch(\Exception $e){
+                return $this->fetch('common/error', ['msg'=>'定制报告生成异常，前联系技术支持(wzycoding@qq.com), msg: ' . $e->getMessage()]);
+            }
+            $this->assign('reportBody', $reportBody);
+            return $this->fetch("subject/report/default_custom", ['theme'=>'lavender', 'source'=>'dian']);
         }
         if($tpl_id == 'default'){
             return $this->fetch("subject/report/{$tpl_id}", ['theme'=>'lavender', 'source'=>'dian']);

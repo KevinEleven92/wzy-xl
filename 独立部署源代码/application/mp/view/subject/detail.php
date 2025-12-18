@@ -28,10 +28,12 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
                     <ion-text color="primary"><?=$subject['expect_finish_time']?></ion-text>分钟
                 </ion-chip>
                 -->
-                <ion-chip style="font-size: 0.6rem;">
-                    <ion-icon name="list-circle-outline"></ion-icon>
-                    <ion-text color="success"><?=$subject['items']?></ion-text>道题目
-                </ion-chip>
+                <?php if($subject['items']>0){ ?>
+                    <ion-chip style="font-size: 0.6rem;">
+                        <ion-icon name="list-circle-outline"></ion-icon>
+                        <ion-text color="success"><?=$subject['items']?></ion-text>道题目
+                    </ion-chip>
+                <?php } ?>
                 <ion-chip style="font-size: 0.6rem;">
                     <ion-icon name="people-outline"></ion-icon>
                     <ion-text color="secondary"><?=formatTimes($subject['participants_show'])?></ion-text>人已测</span>
@@ -75,7 +77,7 @@ include APP_PATH . "mp/view/common/script.php";
 ?>
 <script type="text/javascript">
 <?php
-if (\think\Env::get('production')) {
+if (systemSetting('general_site_environment') == 'WEIXIN') {
 ?>
     wx.ready(function(){
         //分享好友

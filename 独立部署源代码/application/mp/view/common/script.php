@@ -11,7 +11,7 @@
 <script src="/static/mp.ionic/3rd/swiper-bundle.min.js"></script>
 <script type="text/javascript" charset="UTF-8" src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
 <?php
-if (\think\Env::get('production')) {
+if (systemSetting('general_site_environment') == 'WEIXIN') {
 ?>
 <?php
     $controller = request()->controller();
