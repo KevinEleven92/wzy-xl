@@ -39,6 +39,9 @@
 ![微信小程序体验](https://github.com/user-attachments/assets/5fbed27b-9b1f-4b4a-8025-b60d663e11e0 "微信小程序二维码.png")
 ![百度小程序体验](https://github.com/user-attachments/assets/cf7225e8-423e-4f5a-b639-3b5ac561e282 "百度小程序二维码.png")
 
+### 自动安装部署
+![自动安装部署](https://github.com/user-attachments/assets/3ba6f75e-42ce-412b-8731-426788a66d84 "自动安装部署")
+
 ### 用户移动端预览
 #### 移动端咨询室首页
 ![移动端咨询室首页](https://github.com/user-attachments/assets/f8970821-9a7f-4e9a-9e73-79e4fdb53e4c "移动端咨询室首页")
