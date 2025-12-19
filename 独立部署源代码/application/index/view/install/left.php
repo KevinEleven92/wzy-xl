@@ -2,9 +2,11 @@
 use app\index\controller\Install;
 ?>
 <div class="d-flex flex-column">
-    <h5 class="m-1">《为之易心理健康系统》安装程序</h5>
-    <div class="m-1"><div class="easyui-progressbar" data-options="text:'',value:<?=$stepValue?>" style="width:100%;"></div></div>
-    <div class="m-1">
+    <div class="my-3">
+    <div class="m-3">
+        <div class="easyui-progressbar" data-options="text:'',value:<?=$stepValue?>" style="width:100%;"></div>
+    </div>
+    <div class="m-2">
     <?php 
     foreach(Install::STEP_DEFS as $index=>$stepDef){
         if($index == $step){ 

@@ -12,10 +12,10 @@
     include APP_PATH . "index" . DS . "view" . DS . "common" . DS . "head.php";
     ?>
 </head>
-<body  style="max-width: 1200px;margin:0 auto;">
+<body  style="max-width: 900px;margin:0 auto;">
 <div class="loader"></div>
 <div id="main-layout" class="easyui-layout" data-options="fit:true">
-	<div data-options="region:'north',border:false,height:100">
+	<div data-options="region:'north',border:true,height:100">
 		<h1 class="text-center" style="line-height: 90px;">《为之易心理健康系统》安装部署</h1>
 	</div>
     <div data-options="region:'west',minWidth:300,title:'进度提示',collapsible:false" style="width:30%;">
