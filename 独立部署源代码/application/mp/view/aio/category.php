@@ -5,8 +5,8 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
 <ion-tabs>
 <ion-tab>
     <ion-header>
-        <ion-toolbar color="bg">
-            <ion-title color="action">测评分类</ion-title>
+        <ion-toolbar>
+            <ion-title color="medium">测评分类</ion-title>
         </ion-toolbar>
         <ion-toolbar color="bg">
             <ion-searchbar id="subject-searchbar" placeholder="请输入测评关键词" value="<?=$name?>"></ion-searchbar>

@@ -6,8 +6,8 @@ use app\index\logic\Defs as IndexDefs;
 <ion-tabs>
 <ion-tab>
     <ion-header>
-        <ion-toolbar color="bg">
-            <ion-title color="action">首页</ion-title>
+        <ion-toolbar>
+            <ion-title color="medium">首页</ion-title>
         </ion-toolbar>
         <!--
         <ion-toolbar>
@@ -114,7 +114,7 @@ use app\index\logic\Defs as IndexDefs;
                     <div class="wzy-subject-brief">
                         <div class="wzy-subject-left">
                             <?php if($featured['current_price'] <= 0){ ?>
-                            <ion-badge color="success" class="wzy-tag-label free">免费</ion-badge>
+                            <ion-badge class="wzy-tag-label free">免费</ion-badge>
                             <?php } ?>
                             <ion-img class="wzy-subject-img img-thumbnail" src="<?=$featured['image_url']?>"></ion-img>
                         </div>

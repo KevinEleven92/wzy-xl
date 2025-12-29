@@ -5,10 +5,10 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
 <ion-tabs>
 <ion-tab>
     <ion-header>
-        <ion-toolbar color="bg">
-            <ion-title color="action"><?=$pageTitle?></ion-title>
+        <ion-toolbar>
+            <ion-title color="medium"><?=$pageTitle?></ion-title>
         </ion-toolbar>
-        <ion-toolbar color="bg">
+        <ion-toolbar>
             <ion-searchbar id="subject-searchbar" placeholder="请输入测评关键词" value="<?=$name?>"></ion-searchbar>
         </ion-toolbar>
     </ion-header>
@@ -27,7 +27,7 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
                 </ion-segment>
             </div>
             <div class="category-subject">
-                <div id="category_item_list" class="wzy-subject-list"></div>
+                <div id="category_item_list" class="wzy-service-list"></div>
                 <ion-infinite-scroll id="category_item_list_scroll">
                     <ion-infinite-scroll-content></ion-infinite-scroll-content>
                 </ion-infinite-scroll>
@@ -76,28 +76,26 @@ if (systemSetting('general_site_environment') == 'WEIXIN') {
         function createItemListBox(itemList) {
             var _html = ''
             for(var i = 0, len = itemList.length; i < len; i++) {
-                _html += '<ion-card class="wzy-subject-item" data-subject-id="' + itemList[i].id +'">' +
-                        '<div class="wzy-subject-brief">' + 
-                            '<div class="wzy-subject-left">' +
-                                ((itemList[i].currentPrice <= 0)?'<ion-badge color="success" class="wzy-tag-label free">免费</ion-badge>':'') + 
-                                '<ion-img class="wzy-subject-img img-thumbnail" src="' + itemList[i].imageUrl + '"></ion-img>' +
+                _html += '<ion-card class="wzy-service-item" data-subject-id="' + itemList[i].id +'">' +
+                            '<div class="wzy-service-cover">' +
+                                ((itemList[i].currentPrice <= 0)?'<ion-badge class="wzy-tag-label free">免费</ion-badge>':'') + 
+                                '<ion-img class="wzy-service-img img-thumbnail" src="' + itemList[i].imageUrl + '"></ion-img>' +
                             '</div>' +
-                            '<div class="wzy-subject-right">' +
-                                '<div class="wzy-subject-name"><a href="<?=url('mp/Subject/detail')?>?id=' + itemList[i].id + '">' + itemList[i].title + '</a></div>' +
-                                '<div class="wzy-subject-subtitle">' + itemList[i].subTitle + '</div>' +
-                                '<div class="wzy-subject-label">' +
+                            '<div class="wzy-service-info">' +
+                                '<div class="wzy-service-name"><a href="<?=url('mp/Subject/detail')?>?id=' + itemList[i].id + '">' + itemList[i].title + '</a></div>' +
+                                '<div class="wzy-service-subtitle">' + itemList[i].subTitle + '</div>' +
+                                '<div class="wzy-service-label">' +
                                     itemList[i].category_names.map(function(name){return '<span>' + name + '</span>';}).join('') +
                                 '</div>' +
-                                '<div class="wzy-subject-text">' +
-                                    '<p>' <?php if(systemSetting('subject_show_price') == 'yes'){ ?>+ '<span class="wzy-subject-price">￥' + itemList[i].currentPrice + '</span> | '<?php } ?> + '<ion-text color="success">' + itemList[i].items + '</ion-text>道题目</p>' +
+                                '<div class="wzy-service-text">' +
+                                    '<p>' <?php if(systemSetting('subject_show_price') == 'yes'){ ?>+ '￥<span class="wzy-service-price">' + itemList[i].currentPrice + '</span> | '<?php } ?> + '<ion-text color="success">' + itemList[i].items + '</ion-text>道题目</p>' +
                                     '<p><ion-text color="secondary">' + itemList[i].participants + '</ion-text>人已测</p>' +
                                 '</div>' +
                             '</div>' +
-                        '</div>' +
-                        '<div class="wzy-subject-opt">' +
-                            '<ion-button size="small" href="<?=url('mp/Subject/detail')?>?id=' + itemList[i].id + '" color="action" size="default" fill="solid">查看详情<ion-icon name="arrow-forward-circle-outline" slot="end"></ion-icon></ion-button>' +
-                        '</div>' +
-                    '</ion-card>';
+                            '<div class="wzy-service-opt">' +
+                                '<ion-button size="small" href="<?=url('mp/Subject/detail')?>?id=' + itemList[i].id + '" color="action" size="default" fill="solid">查看详情<ion-icon name="arrow-forward-circle-outline" slot="end"></ion-icon></ion-button>' +
+                            '</div>' +
+                        '</ion-card>';
             }
             return _html;
         }

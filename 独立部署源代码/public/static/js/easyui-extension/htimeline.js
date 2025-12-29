@@ -37,14 +37,22 @@
 
         var ul = $("<ul class=\"htimeline\"></ul>").appendTo(target);
         var hasLabel = false;
+        //check if labe exist
+        for (var i = 0; i < options.data.length; i++) {
+            var row = options.data[i];
+            var labelHtml = options.labelFormatter.call(target, row);
+            if (labelHtml) {
+                hasLabel = true;
+            }
+        }
         for (var i = 0; i < options.data.length; i++) {
             var row = options.data[i];
             var li = $("<li class=\"htimeline-item\"></li>").appendTo(ul);
             // Optional label
             var labelHtml = options.labelFormatter.call(target, row);
-            if (labelHtml) {
+            if(!labelHtml) labelHtml='';
+            if(hasLabel){
                 $("<div class=\"htimeline-item-label\"></div>").html(labelHtml).appendTo(li);
-                hasLabel = true;
             }
             // Line and dot elements
             $("<div class=\"htimeline-item-line\"></div>").appendTo(li);
@@ -105,7 +113,14 @@
             if(!row.highlighted){
                 return null;
             }
-            return '<span class="fa fa-circle text-success"></span>';
+            if(row.highlightColor == 'blue'){
+                return '<span class="fa fa-circle text-primary"></span>';
+            }else if(row.highlightColor == 'red'){
+                return '<span class="fa fa-circle text-danger"></span>';
+            }else{
+                //default 'green'
+                return '<span class="fa fa-circle text-success"></span>';
+            }
         }, 
         labelFormatter: function (row) {
             if(!row.highlighted || !row["label"]){

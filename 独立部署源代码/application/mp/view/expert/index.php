@@ -5,8 +5,8 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
 <ion-tabs>
 <ion-tab>
     <ion-header>
-        <ion-toolbar color="bg">
-            <ion-title color="action">专家预约</ion-title>
+        <ion-toolbar>
+            <ion-title color="medium">专家预约</ion-title>
         </ion-toolbar>
         <ion-toolbar color="bg">
             <ion-searchbar id="expert-searchbar" placeholder="请输入专家关键词"></ion-searchbar>
@@ -27,7 +27,7 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
                 </ion-segment>
             </div>
             <div class="category-subject">
-                <div id="expert_item_list" class="wzy-expert-list">
+                <div id="expert_item_list" class="wzy-service-list">
                 </div>
                 <ion-infinite-scroll id="expert_item_list_scroll">
                     <ion-infinite-scroll-content></ion-infinite-scroll-content>
@@ -77,29 +77,27 @@ if (systemSetting('general_site_environment') == 'WEIXIN') {
         function createItemListBox(itemList) {
             let _html = ''
             for (let i = 0, l = itemList.length; i < l; i++) {
-                _html += '<ion-card class="wzy-expert-item" data-expert-id="' + itemList[i].id + '">' +
-                    '<div class="wzy-expert-brief">' +
-                    '<div class="wzy-expert-left">' +
-                    '<ion-img class="wzy-expert-img img-thumbnail" src="' + itemList[i].workimg_url + '"></ion-img>' +
+                _html += '<ion-card class="wzy-service-item" data-expert-id="' + itemList[i].id + '">' +
+                    '<div class="wzy-service-cover">' +
+                        '<ion-img class="wzy-service-img img-thumbnail" src="' + itemList[i].workimg_url + '"></ion-img>' +
                     '</div>' +
-                    '<div class="wzy-expert-right">' +
-                    '<div class="wzy-expert-name"><a href="<?=url('mp/Expert/detail')?>?expertId=' + itemList[i].id + '">' + itemList[i].real_name + '</a></div>' +
-                    '<div class="wzy-expert-quality">' + itemList[i].expert_quality + '</div>' +
-                    '<div class="wzy-expert-label">' +
-                    itemList[i].target_names.map(function(name){return '<span>' + name + '</span>';}).join('') +
-                    '</div>' +
-                    '<div class="wzy-expert-text">' +
-                    '<p>￥<ion-text color="danger">' + itemList[i].appoint_fee + '</ion-text>元\/45分钟</p>' +
-                    '<p><ion-text color="secondary">' + itemList[i].consult_quantity + '</ion-text>小时咨询经验</p>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>' +
-                    '<div class="wzy-expert-field">' +
-                    itemList[i].field_names.map(function(name){return '<span>#' + name + '; </span>';}).join('') +
-                    '</div>' +
-                    '<div class="wzy-expert-opt">' +
-                    '<ion-button size="small" href="<?=url('mp/Expert/detail')?>?expertId=' + itemList[i].id + '" color="light" size="default" fill="solid">查看详情<ion-icon name="arrow-forward-circle-outline" slot="end"></ion-icon></ion-button>&nbsp;' +
-                    '<ion-button size="small" href="<?=url('mp/Expert/appointTime')?>?expertId=' + itemList[i].id + '" color="action" size="default" fill="solid">立即预约<ion-icon name="time-outline" slot="end"></ion-icon></ion-button>' +
+                    '<div class="wzy-service-info">' +
+                        '<div class="wzy-service-name"><a href="<?=url('mp/Expert/detail')?>?expertId=' + itemList[i].id + '">' + itemList[i].real_name + '</a></div>' +
+                        '<div class="wzy-service-subtitle">' + itemList[i].expert_quality + '</div>' +
+                        '<div class="wzy-service-label">' +
+                            itemList[i].target_names.map(function(name){return '<span>' + name + '</span>';}).join('') +
+                        '</div>' +
+                        '<div class="wzy-service-text">' +
+                            '<p>￥<ion-text color="dark" class="wzy-service-price">' + itemList[i].appoint_fee + '</ion-text> 元\/45分钟</p>' +
+                            '<p><ion-text color="secondary">' + itemList[i].consult_quantity + '</ion-text>小时咨询经验</p>' +
+                        '</div>' +
+                        '<div class="wzy-service-field">' +
+                            itemList[i].field_names.map(function(name){return '<span>#' + name + '; </span>';}).join('') +
+                        '</div>' +
+                        '<div class="wzy-service-opt">' +
+                            '<ion-button size="small" href="<?=url('mp/Expert/detail')?>?expertId=' + itemList[i].id + '" color="light" size="default" fill="solid">详情<ion-icon name="arrow-forward-circle-outline" slot="end"></ion-icon></ion-button>&nbsp;' +
+                            '<ion-button size="small" href="<?=url('mp/Expert/appointTime')?>?expertId=' + itemList[i].id + '" color="action" size="default" fill="solid">立即预约<ion-icon name="time-outline" slot="end"></ion-icon></ion-button>' +
+                        '</div>' +
                     '</div>' +
                     '</ion-card>';
 

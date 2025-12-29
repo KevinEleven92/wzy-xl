@@ -3,11 +3,11 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
 ?>
 <ion-app>
 <ion-header>
-    <ion-toolbar color="bg">
+    <ion-toolbar>
         <ion-buttons slot="start" id="nav-top-buttons">
             <ion-button size="small" href="javascript:window.history.back();"><ion-icon slot="start" name="chevron-back-outline"></ion-icon>后退</ion-button>
         </ion-buttons>
-        <ion-title color="action">选择预约时间</ion-title>
+        <ion-title color="medium">选择预约时间</ion-title>
         <ion-buttons slot="end">
             <ion-button size="small" href="<?=$_home_url?>"><ion-icon slot="start" name="home-outline"></ion-icon>首页</ion-button>
         </ion-buttons>
@@ -16,16 +16,16 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
         <ion-backdrop visible="true"></ion-backdrop>
         <ion-segment value="info" disabled="false" class="center-block">
             <ion-segment-button value="time">
-                <ion-label>选择时间</ion-label>
+                <ion-label>时间</ion-label>
             </ion-segment-button>
             <ion-segment-button value="info">
-                <ion-label>填写资料</ion-label>
+                <ion-label>资料</ion-label>
             </ion-segment-button>
             <ion-segment-button value="pay">
-                <ion-label>预约确认</ion-label>
+                <ion-label>确认</ion-label>
             </ion-segment-button>
             <ion-segment-button value="success">
-                <ion-label>预约成功</ion-label>
+                <ion-label>结果</ion-label>
             </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
@@ -39,7 +39,7 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
         <input type="hidden" name="appointMode" id="appointMode" value="<?=$infos['appointMode']?>"/>
         <ion-list>
             <ion-item color="section" lines="none">
-                <ion-title>请填写预约信息</ion-title>
+                <ion-text>请填写预约信息</ion-text>
                 <ion-button id="bookTips" slot="end" color="light" fill="solid" size="small">预约说明</ion-button>
             </ion-item>
             <ion-item>

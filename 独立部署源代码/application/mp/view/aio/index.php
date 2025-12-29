@@ -5,8 +5,8 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
 <ion-tabs>
 <ion-tab>
     <ion-header>
-        <ion-toolbar color="bg">
-            <ion-title color="action">首页</ion-title>
+        <ion-toolbar>
+            <ion-title color="medium">首页</ion-title>
         </ion-toolbar>
         <!--
         <ion-toolbar>

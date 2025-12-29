@@ -12,11 +12,11 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
     }
 </style>
 <ion-header>
-    <ion-toolbar color="bg">
+    <ion-toolbar>
         <ion-buttons slot="start" id="nav-top-buttons">
             <ion-button size="small" href="javascript:window.history.back();"><ion-icon slot="start" name="chevron-back-outline"></ion-icon>后退</ion-button>
         </ion-buttons>
-        <ion-title color="action">测前调查</ion-title>
+        <ion-title color="medium">测前调查</ion-title>
         <ion-buttons slot="end">
             <ion-button size="small" href="<?=$_home_url?>"><ion-icon slot="start" name="home-outline"></ion-icon>首页</ion-button>
         </ion-buttons>

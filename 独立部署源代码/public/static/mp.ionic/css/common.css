@@ -1,6 +1,14 @@
 /* tabbar end */
 :root {
 	--ion-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	
+	--ion-color-primary: #01c2c3;
+	--ion-color-primary-rgb: 1,194,195;
+	--ion-color-primary-contrast: #ffffff;
+	--ion-color-primary-contrast-rgb: 255,255,255;
+	--ion-color-primary-shade: #01abac;
+	--ion-color-primary-tint: #1ac8c9;
+
 	--ion-color-sky: #99CCFF;
 	--ion-color-sky-rgb: 153,204,255;
 	--ion-color-sky-contrast: #000000;
@@ -22,19 +30,28 @@
 	--ion-color-bg-shade: #dadcde;
 	--ion-color-bg-tint: #f9fbfc;
 
-	--ion-color-action: #54a58c;
-	--ion-color-action-rgb: 84,165,140;
+	--ion-color-action: #01c2c3;
+	--ion-color-action-rgb: 1,194,195;
 	--ion-color-action-contrast: #ffffff;
-	--ion-color-action-contrast-rgb: 0,0,0;
-	--ion-color-action-shade: #4a917b;
-	--ion-color-action-tint: #65ae98;
+	--ion-color-action-contrast-rgb: 255,255,255;
+	--ion-color-action-shade: #01abac;
+	--ion-color-action-tint: #1ac8c9;
 
-	--ion-color-section: #ddf1ea;
+	--ion-color-section: #DCF8FB;
 	--ion-color-section-rgb: 221,241,234;
 	--ion-color-section-contrast: #000000;
 	--ion-color-section-contrast-rgb: 0,0,0;
 	--ion-color-section-shade: #c2d4ce;
 	--ion-color-section-tint: #e0f2ec;
+
+	--ion-color-btn: #01c2c3;
+	--ion-color-btn-rgb: 1,194,195;
+	--ion-color-btn-contrast: #ffffff;
+	--ion-color-btn-contrast-rgb: 255,255,255;
+	--ion-color-btn-shade: #01abac;
+	--ion-color-btn-tint: #1ac8c9;
+
+
 }
 .ion-color-sky {
 	--ion-color-base: var(--ion-color-sky);
@@ -76,8 +93,16 @@
 	--ion-color-shade: var(--ion-color-section-shade);
 	--ion-color-tint: var(--ion-color-section-tint);
 }
+.ion-color-btn {
+	--ion-color-base: var(--ion-color-btn);
+	--ion-color-base-rgb: var(--ion-color-btn-rgb);
+	--ion-color-contrast: var(--ion-color-btn-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-btn-contrast-rgb);
+	--ion-color-shade: var(--ion-color-btn-shade);
+	--ion-color-tint: var(--ion-color-btn-tint);
+}
 ion-segment-button::part(indicator-background) {
-	background: #54a58c;
+	background: #01c2c3;
 }
 
 /* Material Design styles */
@@ -86,7 +111,7 @@ ion-segment-button.md::part(native) {
 }
 
 .segment-button-checked.md::part(native) {
-	color: #54a58c;
+	color: #01c2c3;
 }
 
 ion-segment-button.md::part(indicator-background) {
@@ -95,7 +120,7 @@ ion-segment-button.md::part(indicator-background) {
 
 /* iOS styles */
 ion-segment-button.ios::part(native) {
-	color: #54a58c;
+	color: #01c2c3;
 }
 
 .segment-button-checked.ios::part(native) {
@@ -109,7 +134,28 @@ ion-segment-button.ios::part(indicator-background) {
 .text-monospace {
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
 }
-
+ion-title{
+	font-size: 1.3rem;
+	font-weight: normal;
+	font-stretch: normal;
+}
+ion-button{
+	font-size: 0.8rem;
+}
+ion-badge{
+	--background:var(--ion-color-success);
+	--color:var(--ion-color-bg);
+	font-size: 0.7rem;
+}
+ion-searchbar input{
+	font-size: 0.6rem !important;
+}
+ion-item{
+	font-size: 0.8rem;
+}
+ion-label{
+	font-size: 0.82rem;
+}
 .text-justify {
   text-align: justify !important;
 }

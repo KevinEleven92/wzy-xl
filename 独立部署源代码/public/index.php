@@ -48,7 +48,7 @@ define('RES_DIR', SITE_DIR . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 
 define('STATIC_VER', '20251218');
 //define('STATIC_VER', rand());
 define('TEST', true);
-define('VERSION', '2.2.1');
+define('VERSION', '2.2.2');
 define('DEVELOPER_EMAIL', '');
 
 define('UNIQID', uniqid());

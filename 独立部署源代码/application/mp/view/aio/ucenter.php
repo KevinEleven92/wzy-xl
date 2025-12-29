@@ -5,8 +5,8 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
 <ion-tabs>
 <ion-tab>
     <ion-header>
-        <ion-toolbar color="bg">
-            <ion-title color="action">个人中心</ion-title>
+        <ion-toolbar>
+            <ion-title color="medium">个人中心</ion-title>
         </ion-toolbar>
         <ion-toolbar color="bg">
             <ion-segment id="tab-switch-segment" value="pending" disabled="false" class="center-block">

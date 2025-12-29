@@ -3,8 +3,8 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
 ?>
 <ion-app>
 <ion-header>
-    <ion-toolbar color="bg">
-        <ion-title color="action"><?php echo \think\Lang::get('System Error'); ?></ion-title>
+    <ion-toolbar>
+        <ion-title color="medium"><?php echo \think\Lang::get('System Error'); ?></ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content color="bg" class="ion-padding">

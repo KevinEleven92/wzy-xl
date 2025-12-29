@@ -4,11 +4,11 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
 
 <ion-app>
 <ion-header>
-    <ion-toolbar color="bg">
+    <ion-toolbar>
         <ion-buttons slot="start" id="nav-top-buttons">
             <ion-button size="small" href="javascript:window.history.back();"><ion-icon slot="start" name="chevron-back-outline"></ion-icon>后退</ion-button>
         </ion-buttons>
-        <ion-title color="action">预约确认</ion-title>
+        <ion-title color="medium">预约确认</ion-title>
         <ion-buttons slot="end">
             <ion-button size="small" href="<?=$_home_url?>"><ion-icon slot="start" name="home-outline"></ion-icon>首页</ion-button>
         </ion-buttons>
@@ -17,16 +17,16 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
         <ion-backdrop visible="true"></ion-backdrop>
         <ion-segment value="pay" disabled="false" class="center-block">
             <ion-segment-button value="time">
-                <ion-label>选择时间</ion-label>
+                <ion-label>时间</ion-label>
             </ion-segment-button>
             <ion-segment-button value="info">
-                <ion-label>填写资料</ion-label>
+                <ion-label>资料</ion-label>
             </ion-segment-button>
             <ion-segment-button value="pay">
-                <ion-label>预约确认</ion-label>
+                <ion-label>确认</ion-label>
             </ion-segment-button>
             <ion-segment-button value="success">
-                <ion-label>预约成功</ion-label>
+                <ion-label>结果</ion-label>
             </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
@@ -42,7 +42,7 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
                 <ion-avatar slot="start">
                     <img alt="<?=$infos['expert_name']?>" src="<?=generateThumbnailUrl($infos['workimg_url'], 150)?>" />
                 </ion-avatar>
-                <ion-title><?=$infos['expert_name']?></ion-title>
+                <ion-text><?=$infos['expert_name']?></ion-text>
                 -->
                 <ion-label><ion-text color="medium"><?=$infos['expert_name']?></ion-text></ion-label>
                 <ion-button href="tel:<?=$infos['expert_cellphone']?>" slot="end" fill="clear" color="secondary"><ion-icon name="call-outline"></ion-icon><?=$infos['expert_cellphone']?></ion-button>

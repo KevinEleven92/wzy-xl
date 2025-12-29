@@ -42,8 +42,6 @@ class Defs{
         self::eGoodsPending=>'<span class="badge badge-secondary">未使用</span>',
         self::eGoodsUsed=>'<span class="badge badge-success">已使用</span>'
     ];
-    /*****************************************************************/
-    const WZYER_WXPAY_MCH_ID = '1598729631';
     /**内部超级访问特权**/
     const INTERNAL_PRIVILEGE_TOKEN = 'D751A17428B0CD6077668A706177B8B1';
     const BUILT_IN_MP_USER = [

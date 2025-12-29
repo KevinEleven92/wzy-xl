@@ -255,6 +255,11 @@ CREATE TABLE `customer`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 238 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '用户表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
+-- Records of customer
+-- ----------------------------
+INSERT INTO `customer` VALUES (1, 'robot', 'robot', '/static/mp.ionic/img/robot.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-12-26 23:32:09', '2025-12-26 23:32:09', NULL, NULL, 0, 0.00, NULL, 0, 0.00, NULL, 0, NULL, '', '', '', NULL, '', 1, 0);
+
+-- ----------------------------
 -- Table structure for dian_goods
 -- ----------------------------
 DROP TABLE IF EXISTS `dian_goods`;
@@ -1197,5 +1202,15 @@ CREATE TABLE `wx_menus`  (
 -- ----------------------------
 -- Records of wx_menus
 -- ----------------------------
-
+CREATE TABLE `transactions` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `order_no` char(32) NOT NULL DEFAULT '' COMMENT '订单编号',
+  `fee_type` tinyint NOT NULL DEFAULT '0' COMMENT '费用类型,1-test, 2-appoint',
+  `total_fee` int unsigned NOT NULL DEFAULT '0' COMMENT '金额, 分为单位',
+  `notify_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '通知时间',
+  `channel` tinyint NOT NULL DEFAULT '0' COMMENT '渠道, 1-为之易，2-用户自有',
+  `payload` varchar(2048) NOT NULL DEFAULT '' COMMENT '通知回调消息',
+  PRIMARY KEY (`id`),
+  KEY `order_no` (`order_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 SET FOREIGN_KEY_CHECKS = 1;

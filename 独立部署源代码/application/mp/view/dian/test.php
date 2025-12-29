@@ -6,11 +6,11 @@ include APP_PATH . "mp" . DS . "view" . DS . "common" . DS . "header.php";
 ?>
 <ion-app>
 <ion-header>
-    <ion-toolbar color="bg">
+    <ion-toolbar>
         <ion-buttons slot="start" id="nav-top-buttons">
             <ion-button size="small" href="<?=$_home_url?>"><ion-icon slot="start" name="chevron-back-outline"></ion-icon>后退</ion-button>
         </ion-buttons>
-        <ion-title color="action">量表测评答题</ion-title>
+        <ion-title color="medium">量表测评答题</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content color="bg">

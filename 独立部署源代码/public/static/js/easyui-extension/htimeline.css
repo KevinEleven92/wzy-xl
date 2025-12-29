@@ -5,20 +5,22 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .htimeline-item {
   position: relative;
   list-style: none;
   margin-top: 12px;
   padding: 0px 0 12px 0;
-  min-width: 100px;
 }
 .htimeline-item-label {
-  position: absolute;
-  top: 0px;
   font-size:12px;
+  text-align:left;
   opacity:0.5;
+  word-break: break-word !important;
+  word-wrap: break-word !important;
+  padding: 1px 20px 10px 1px;
+  height: 20px;
 }
 .htimeline-item-dot {
   position: absolute;
@@ -56,12 +58,11 @@
   padding: 24px 10px 10px 1px;
   position: relative;
   font-size: 14px;
-  top: 0px;
   text-align: left;
   word-break: break-word !important;
   word-wrap: break-word !important;
-  max-width: 100px;
+  max-width: 200px;
 }
 .htimeline-label .htimeline-item-content{
-    padding: 34px 10px 10px 1px;
+    padding: 14px 10px 10px 1px;
 }

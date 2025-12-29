@@ -134,7 +134,7 @@ return array(
         'group'   => '预约设置',
         'editor'  => array('type'=>'textbox','options'=>array('tipPosition'=>'left','multiline'=>true,'height'=>150,'validType'=>array('length[0,1024]'))),
         'default' => <<<TIP
-            <h5>预约成功后，我们工作人员将在24小时内与 您联系，并确定预约时间、地点等；</h5>
+            <p>预约成功后，我们工作人员将在24小时内与 您联系，并确定预约时间、地点等；</p>
             <p><b>客服热线：</b>******； </p>
             <p><b>隐私安全：</b>我们将会对您的所有信息进行保密； </p>
             <p><b>变更预约：</b>若因为不可抗力需要变更/取消已协商好 的咨询预约，请务必提前24小时联络工作人员，否则 咨询将如期开始； </p>

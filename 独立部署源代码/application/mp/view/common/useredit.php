@@ -3,13 +3,13 @@ use app\index\logic\Organization as OrganizationLogic;
 ?>
 <ion-modal id="popupCustomerInfo" is-open="false">
     <ion-header>
-      <ion-toolbar color="bg">
+      <ion-toolbar>
         <ion-buttons slot="start">
           <ion-button size="small" color="medium" fill="solid" onclick="document.getElementById('popupCustomerInfo').dismiss()" strong="true">取消</ion-button>
         </ion-buttons>
-        <ion-title color="action">个人信息</ion-title>
+        <ion-title color="medium">个人信息</ion-title>
         <ion-buttons slot="end">
-          <ion-button size="small" color="primary" fill="solid" onclick="saveUserInfo()" strong="true">保存</ion-button>
+          <ion-button size="small" color="action" fill="solid" onclick="saveUserInfo()" strong="true">保存</ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>

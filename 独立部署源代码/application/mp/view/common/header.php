@@ -16,9 +16,9 @@
     <?php } ?>
     <link rel="stylesheet" href="/static/mp.ionic/css/reset.css?<?=STATIC_VER?>">
     <link rel="stylesheet" href="/static/mp.ionic/3rd/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="/static/mp.ionic/dist8/css/ionic.bundle.css" />
     <link rel="stylesheet" href="/static/mp.ionic/css/common.css?<?=STATIC_VER?>">
     <link rel="stylesheet" href="/static/mp.ionic/css/page.css?<?=STATIC_VER?>">
-    <link rel="stylesheet" href="/static/mp.ionic/dist8/css/ionic.bundle.css" />
     <link rel="stylesheet" href="/static/mp.ionic/css/report.css?<?=STATIC_VER?>">
     <script>
         var SITE_URL = '<?=SITE_URL?>';
