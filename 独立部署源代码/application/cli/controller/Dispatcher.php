@@ -39,6 +39,7 @@ class Dispatcher extends Common
 
     public function run()
     {
+        Log::notice("Dispatcher::run-start");
         //清理超时job
         $this->cleanup();
         $this->runSchedulers();
@@ -57,6 +58,7 @@ class Dispatcher extends Common
                 break;
             }
         }
+        Log::notice("Dispatcher::run-end");
     }
 
     public function runSchedulers(){
@@ -158,7 +160,7 @@ class Dispatcher extends Common
 
     public function nextJob($client_id){
         $now = date('Y-m-d H:i:s');
-        $job = JobQueueModel::where(['status'=>JobQueueModel::JOB_STATUS_QUEUED,'execute_time'=>['elt',$now]])
+        $job = JobQueueModel::where(['status'=>JobQueueModel::JOB_STATUS_QUEUED])
             ->limit(1)
             ->order('id ASC')
             ->find();
