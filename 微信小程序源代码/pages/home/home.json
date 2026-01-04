@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "为之易心理测量平台",
-  "usingComponents": {
-    "t-search": "tdesign-miniprogram/search/search",
-    "t-icon": "tdesign-miniprogram/icon/icon"
-  },
-  "enablePullDownRefresh":false
-}
